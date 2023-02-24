@@ -1,20 +1,20 @@
 import { useLocation } from "react-router-dom";
 
-function Home(){
+function Home() {
     const location = useLocation();
-    const{title, image, description, price}= location.state
+    const { title, image, description, price } = location.state
     console.log(location.state)
-    return(
+    return (
         <>
-    <div className="text-center">
-   <div>
-   <img width='50%' src={image}/>
-   </div>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <h4>${price}</h4>
-       
-    </div>
+            <div className="text-center">
+                <div>
+                    <img width='20%' src={image} />
+                </div>
+                <h1>{title}</h1>
+                <p>{description}</p>
+                <h4>${price}</h4>
+
+            </div>
         </>
     )
 }
