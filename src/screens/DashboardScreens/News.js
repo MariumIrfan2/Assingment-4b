@@ -1,9 +1,7 @@
-function News(){
-    return(
+export default function News() {
+    return (
         <>
-        News
+            <h1>News</h1>
         </>
     )
 }
-
-export default News;

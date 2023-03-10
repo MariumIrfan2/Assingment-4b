@@ -74,21 +74,6 @@ function Product() {
                 })}
             </div>
             }
-
-            {/* <div className='row'>
-                {data.filter((x) => x.title.toLowerCase().includes(inputText)).map((x, i) => {
-                    return (
-                        <div className='col-md'>
-                            <ProductCard title={x.title} imgSrc={x.image} />
-                            <button onClick={() => getProduct(x)}>View Product</button>
-
-                        </div>
-
-
-                    )
-                })}
-            </div> */}
-
         </>
 
 

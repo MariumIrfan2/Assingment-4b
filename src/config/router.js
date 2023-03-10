@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "../screens/Dashboard";
 import Home from "../screens/DashboardScreens/Home";
+import LogIn from "../screens/logIn";
 import Product from "../screens/Product";
+import SignUp from "../screens/signUp";
 
 
 function AppRouter() {
@@ -9,9 +11,11 @@ function AppRouter() {
         <BrowserRouter>
 
             <Routes>
-                {/* <Route path='/*' element={<Dashboard />} /> */}
-                <Route path='/' element={<Product />} />
-                <Route path="Home" element={<Home />} />
+                <Route path='dashboard/*' element={<Dashboard />} />
+                <Route path='product' element={<Product />} />
+                <Route path="/" element={<SignUp />} />
+                <Route path="signup" element={<SignUp />} />
+                <Route path="login" element={<LogIn />} />
             </Routes>
         </BrowserRouter>
     )

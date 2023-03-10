@@ -18,24 +18,35 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./DashboardScreens/Home";
 import News from "./DashboardScreens/News";
 import Contact from "./DashboardScreens/Contact";
+import CommentsScreen from "./DashboardScreens/comments";
 
 const drawerWidth = 240;
-const navItems = [
-    {
-        name: "Home",
-        path: "Home",
-    },
-    {
-        name: "News",
-        path: "News",
-    },
-    {
-        name: "Contact",
-        path: "Contact",
-    },
-];
+
 
 function Dashboard(props) {
+
+    const [navItems, setNavItems] =React.useState(
+        [
+            {
+                name: "Home",
+                path: "home",
+            },
+            {
+                name: "News",
+                path: "news",
+            },
+            {
+                name: "posts",
+                path: "contact",
+            },
+            {
+                name: "Comments",
+                path: "comments",
+            },
+        ]
+    )
+   
+
     const navigate = useNavigate();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -125,9 +136,10 @@ function Dashboard(props) {
             <Box component="main" sx={{ p: 3 }}>
                 <Toolbar />
                 <Routes>
-                    <Route element={<Home />} path="Home" />
-                    <Route element={<News />} path="News" />
-                    <Route element={<Contact />} path="Contact" />
+                    <Route element={<Home />} path="home" />
+                    <Route element={<News />} path="news" />
+                    <Route element={<Contact />} path="contact" />
+                    <Route element={<CommentsScreen />} path="comments" />
                 </Routes>
             </Box>
         </Box>
