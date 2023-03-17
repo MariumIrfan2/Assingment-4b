@@ -46,18 +46,68 @@ let loginUser = (obj) => {
             })
     });
 };
+
+let postFBData = (nodeName, obj) => {
+    return new Promise((resolve, reject) => {
+        let keyRef = ref(db, `${nodeName}/`)
+        obj.id = push(keyRef).key;
+
+        let postRef = ref(db, `${nodeName}/${obj.id}`)
+        set(postRef, obj)
+            .then((res) => {
+                resolve("data send successfully");
+            })
+            .catch((err) => {
+                reject(err.message)
+            });
+    });
+};
+
+let getFbData = () => { };
+
+let checkAuthUser = () => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+
+            const uid = user.uid;
+            // ...
+        } else {
+            console.log("User is signed out")
+
+        }
+    });
+};
+
 let logoutUser = () => { };
-let fbGet = () => { };
+
 let fbGetById = () => { };
 let fbEdit = () => { };
-let fbDelete = () => { };
+let fbDelete = (nodeName, id) => {
+    const refrence = ref(database, nodeName + "/" + id);
+    return remove(refrence);
+};
 
 export {
     SignUpUser,
     loginUser,
     logoutUser,
-    fbGet,
+    postFBData,
+    getFbData,
     fbGetById,
     fbEdit,
     fbDelete,
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+

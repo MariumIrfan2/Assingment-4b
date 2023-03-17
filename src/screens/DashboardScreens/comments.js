@@ -14,12 +14,12 @@ function CommentsScreen() {
     {
       displayName: "Full Name",
       key: "name",
-      searchAble: true,
+      searchable: true,
     },
     {
       displayName: "User Email",
       key: "email",
-      searchAble: true,
+      searchable: true,
     },
     {
       displayName: "Content",
@@ -45,7 +45,7 @@ function CommentsScreen() {
   }, []);
   return (
     <>
-      <div>
+      {/* <div>
         <SMSearchBar
           label="Search Roll #"
           searchList={[
@@ -62,9 +62,7 @@ function CommentsScreen() {
             console.log(selectVal, inputVal);
           }}
         />
-
-        
-      </div>
+      </div> */}
       <SMGrid title="Comments" datasource={listData} cols={cols} />
     </>
   );

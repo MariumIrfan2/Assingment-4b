@@ -6,7 +6,7 @@ function SMSearchBar(props) {
     const [selected, setSelected] = useState("");
 
     let SearchVal = (e) => {
-        onSearch(e, selected)
+        onSearch(selected, e)
     }
     return (
 
