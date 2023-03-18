@@ -7,6 +7,7 @@ import { loginUser } from "../config/firebaseBaseMethods";
 function LogIn() {
     const navigate = useNavigate();
     const [model, setModel] = useState({});
+    let CategoryType = ["Admin", "Student", ""]
 
     let signIn = () => {
         console.log(model)

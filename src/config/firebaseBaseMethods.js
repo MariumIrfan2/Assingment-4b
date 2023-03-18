@@ -66,16 +66,19 @@ let postFBData = (nodeName, obj) => {
 let getFbData = () => { };
 
 let checkAuthUser = () => {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
+    return new Promise = (resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
 
-            const uid = user.uid;
-            // ...
-        } else {
-            console.log("User is signed out")
+                const uid = user.uid;
+                // ...
+            } else {
+                console.log("User is signed out")
 
-        }
-    });
+            }
+        });
+    }
+
 };
 
 let logoutUser = () => { };
