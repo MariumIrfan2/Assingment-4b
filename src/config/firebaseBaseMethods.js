@@ -63,15 +63,15 @@ let postFBData = (nodeName, obj) => {
     });
 };
 
-let getFbData = (nodeName, id) => { 
-    let refrence = ref(db, `${nodeName}/`)
-    onValue(refrence, (dt)=>{
-        if(dt.exists){
-            resolve()
-        }
-    })
+// let getFbData = (nodeName, id) => { 
+//     let refrence = ref(db, `${nodeName}/`)
+//     onValue(refrence, (dt)=>{
+//         if(dt.exists){
+//             resolve()
+//         }
+//     })
 
-};
+// };
 
 let logoutUser = () => { };
 
@@ -84,7 +84,6 @@ export {
     loginUser,
     logoutUser,
     postFBData,
-    getFbData,
     fbGetById,
     fbEdit
 };
