@@ -15,10 +15,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import Home from "./DashboardScreens/Home";
-import News from "./DashboardScreens/News";
-import Contact from "./DashboardScreens/Contact";
-import CommentsScreen from "./DashboardScreens/comments";
+import InstituteForm from "./DashboardScreens/IntituteForm";
+import Institute from "./DashboardScreens/Institute";
 
 const drawerWidth = 240;
 
@@ -28,21 +26,18 @@ function Dashboard(props) {
     const [navItems, setNavItems] =React.useState(
         [
             {
-                name: "Home",
-                path: "home",
+                name: "Institute",
+                path: "institue",
             },
             {
-                name: "News",
-                path: "news",
+                name: "Institute Form",
+                path: "instituteform",
             },
             {
-                name: "posts",
-                path: "contact",
+                name: "User Register",
+                path: "userregister",
             },
-            {
-                name: "Comments",
-                path: "comments",
-            },
+           
         ]
     )
    
@@ -136,10 +131,8 @@ function Dashboard(props) {
             <Box component="main" sx={{ p: 3 }}>
                 <Toolbar />
                 <Routes>
-                    <Route element={<Home />} path="home" />
-                    <Route element={<News />} path="news" />
-                    <Route element={<Contact />} path="contact" />
-                    <Route element={<CommentsScreen />} path="comments" />
+                <Route path="instituteform/" element={<InstituteForm />} />
+                <Route path="institute/" element={<Institute />} />
                 </Routes>
             </Box>
         </Box>

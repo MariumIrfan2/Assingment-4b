@@ -7,7 +7,6 @@ import { loginUser } from "../config/firebaseBaseMethods";
 function LogIn() {
     const navigate = useNavigate();
     const [model, setModel] = useState({});
-    let CategoryType = ["Admin", "Student", ""]
 
     let signIn = () => {
         console.log(model)
@@ -43,6 +42,7 @@ function LogIn() {
                         onChange={(e) => setModel({ ...model, password: e.target.value })}
                     />
                 </Grid>
+
 
                 <Grid item md={6} className='p-2 m-3'>
                     <div>

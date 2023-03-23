@@ -1,4 +1,4 @@
-import { Grid, Box, TextField, Typography, Button } from "@mui/material";
+import { Grid, Box, TextField, Typography, Button, InputLabel } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { SignUpUser } from "../config/firebaseBaseMethods";
@@ -8,6 +8,7 @@ function SignUp() {
     const navigate = useNavigate();
 
     const [model, setModel] = useState({});
+    let CategoryType = ["Admin", "Student", "Teacher", "Institute"];
 
     let createUser = () => {
         console.log(model)
@@ -54,6 +55,7 @@ function SignUp() {
                         onChange={(e) => setModel({ ...model, password: e.target.value })}
                     />
                 </Grid>
+             
 
                 <Grid item md={6} className='p-2 m-3'>
                     <div>

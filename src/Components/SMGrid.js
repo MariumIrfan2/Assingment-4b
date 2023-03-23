@@ -5,7 +5,6 @@ import SMSearchBar from "./SMSearchBar";
 function SMGrid(props) {
   const { datasource, title, cols } = props;
 
-  const [filteredData, setFilteredData] = useState([]);
   
 
  
@@ -16,7 +15,7 @@ function SMGrid(props) {
           <h2>{title}</h2>
         </div>
         <div>
-        <SMSearchBar
+        {/* <SMSearchBar
                         searchList={cols.filter((x) => x.searchable)}
                         onSearch={(key, inputval) => {
                             console.log(key,inputval);
@@ -25,7 +24,7 @@ function SMGrid(props) {
                             console.log(arr);
                             setFilteredData([...arr])
                         }}
-                    />
+                    /> */}
        
         </div>
         {datasource && Array.isArray(datasource) && (
@@ -38,7 +37,7 @@ function SMGrid(props) {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((x, i) => (
+              {datasource.map((x, i) => (
                 <tr key={i}>
                   {cols.map((e, ind) => (
                     <td key={ind}>

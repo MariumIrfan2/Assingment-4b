@@ -1,6 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../config/firebaseConfig";
-import { getDatabase, onValue, ref, set } from "firebase/database";
+import { getDatabase, onValue, ref, set, push } from "firebase/database";
 
 
 const auth = getAuth(app);
@@ -63,21 +63,13 @@ let postFBData = (nodeName, obj) => {
     });
 };
 
-let getFbData = () => { };
-
-let checkAuthUser = () => {
-    return new Promise = (resolve, reject) => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-
-                const uid = user.uid;
-                // ...
-            } else {
-                console.log("User is signed out")
-
-            }
-        });
-    }
+let getFbData = (nodeName, id) => { 
+    let refrence = ref(db, `${nodeName}/`)
+    onValue(refrence, (dt)=>{
+        if(dt.exists){
+            resolve()
+        }
+    })
 
 };
 
@@ -85,10 +77,7 @@ let logoutUser = () => { };
 
 let fbGetById = () => { };
 let fbEdit = () => { };
-let fbDelete = (nodeName, id) => {
-    const refrence = ref(database, nodeName + "/" + id);
-    return remove(refrence);
-};
+
 
 export {
     SignUpUser,
@@ -97,8 +86,7 @@ export {
     postFBData,
     getFbData,
     fbGetById,
-    fbEdit,
-    fbDelete,
+    fbEdit
 };
 
 
