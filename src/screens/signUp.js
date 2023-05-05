@@ -2,10 +2,25 @@ import { Grid, Box, TextField, Typography, Button, InputLabel } from "@mui/mater
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { SignUpUser } from "../config/firebaseBaseMethods";
+import { useDispatch } from "react-redux";
+import { add } from "../config/Redux/Reducer/SignUpSlice";
+
 
 
 function SignUp() {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
+
+    const reduxSignup = () => {
+        dispatch(
+            add({
+                name: "ABC",
+                email: "adb@gmail.com",
+                password: "123456",
+            })
+        )
+        navigate('/products')
+    }
 
     const [model, setModel] = useState({});
     let CategoryType = ["Admin", "Student", "Teacher", "Institute"];
@@ -25,7 +40,6 @@ function SignUp() {
 
     return (
         <Box className='text-center m-5 p-5'>
-
 
             <Typography variant='h2'>SignUp</Typography>
             <Grid contanier className=''>
@@ -55,7 +69,7 @@ function SignUp() {
                         onChange={(e) => setModel({ ...model, password: e.target.value })}
                     />
                 </Grid>
-             
+
 
                 <Grid item md={6} className='p-2 m-3'>
                     <div>
@@ -70,7 +84,9 @@ function SignUp() {
                             variant='contained'
                         >SignUp</Button>
                     </div>
-
+                    <button onClick={reduxSignup}>
+                        Signup
+                    </button>
                 </Grid>
             </Grid>
         </Box>
