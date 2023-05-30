@@ -1,6 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Delete, Get, Post, Put } from '../../../config/Axios/apibasemethods';
+import { Delete, Get, Post } from '../../../config/Axios/apibasemethods';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -8,6 +9,11 @@ export default function CourseForm() {
 
     const [model, setModel] = useState([]);
     const [isLoading, setisLoading] = useState([]);
+    const navigate = useNavigate()
+    let { id } = useParams();
+    // console.log(id)
+
+
 
     let getdata = () => {
         Get('/courses').then((res) => {
@@ -20,7 +26,7 @@ export default function CourseForm() {
     };
 
     let postdata = () => {
-        Post('/courses',
+        Post('/courses', id,
             {
                 name: model.name,
                 shortName: model.name,
@@ -30,27 +36,14 @@ export default function CourseForm() {
             }).then((res) => {
                 console.log(res);
                 setModel({ ...res.data });
+                navigate('/backendcourselist')
             })
             .catch((err) => {
                 console.log(err);
             });
     };
 
-    let putdata = () => {
-        Put('/courses', '647480ef76d7ede8ee2fabd1',
-            {
-                name: model.name,
-                shortName: model.name,
-                duration: model.duration,
-                fee: model.fee
-            }).then((res) => {
-                console.log(res.data);
-                setModel({ ...res.data });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+
 
     let delData = () => {
         Delete('/courses', '646cdda23ddb0e6530ea0c16').then((res) => {
@@ -65,6 +58,8 @@ export default function CourseForm() {
     useEffect(() => {
         getdata();
     }, []);
+
+    
     return (
         <div>
             <Box className='text-center m-2 p-3'>
@@ -111,22 +106,6 @@ export default function CourseForm() {
                                 variant='contained'
                             >Submit</Button>
                         </div>
-
-                        <br />
-                        <div>
-                            <Button
-                                onClick={putdata}
-                                variant='contained'
-                            >Edit</Button>
-                        </div>
-                        <br />
-                        <div>
-                            <Button
-                                onClick={delData}
-                                variant='contained'
-                            >Delete</Button>
-                        </div>
-
                     </Grid>
                 </Grid>
             </Box>

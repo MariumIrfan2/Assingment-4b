@@ -11,10 +11,8 @@ let Get = (endPoint, id) => {
         return apiHandle.get(endPoint);
     }
 };
-let Post = (endPoint, body) => {
-    return apiHandle.post(`${endPoint}`, body);
-};
-let Put = (endPoint, id, body) => {
+
+let Post = (endPoint, id, body) => {
     if (id) {
 
         return apiHandle.put(`${endPoint}/${id}`, body);
@@ -22,7 +20,9 @@ let Put = (endPoint, id, body) => {
         return apiHandle.post(`${endPoint}`, body);
     }
 };
+
 let Delete = (endPoint, id) => {
     return apiHandle.delete(`${endPoint}/${id}`);
 };
-export { Get, Post, Put, Delete };
+
+export { Get, Post, Delete };

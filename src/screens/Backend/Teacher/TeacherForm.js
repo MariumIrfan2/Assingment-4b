@@ -1,6 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Delete, Get, Post, Put } from '../../../config/Axios/apibasemethods';
+import { Delete, Get, Post } from '../../../config/Axios/apibasemethods';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function TeacherForm() {
 
@@ -8,6 +9,11 @@ export default function TeacherForm() {
 
     const [model, setModel] = useState([]);
     const [isLoading, setisLoading] = useState([]);
+    const navigate = useNavigate()
+
+    let { id } = useParams();
+    // console.log(id)
+
 
     let getdata = () => {
         Get('/teachers').then((res) => {
@@ -20,7 +26,7 @@ export default function TeacherForm() {
     };
 
     let postdata = () => {
-        Post('/teachers',
+        Post('/teachers', id,
             {
                 name: model.name,
                 course: model.course,
@@ -29,21 +35,7 @@ export default function TeacherForm() {
             }).then((res) => {
                 console.log(res);
                 setModel({ ...res.data });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    let putdata = () => {
-        Put('/teachers', '647228da822e57f6a6042219',
-            {
-                name: model.name,
-                course: model.course,
-                contact: model.contact
-            }).then((res) => {
-                console.log(res.data);
-                setModel({ ...res.data });
+                navigate('/backendteacherlist')
             })
             .catch((err) => {
                 console.log(err);
@@ -100,22 +92,6 @@ export default function TeacherForm() {
                                 variant='contained'
                             >Submit</Button>
                         </div>
-
-                        <br />
-                        <div>
-                            <Button
-                                onClick={putdata}
-                                variant='contained'
-                            >Edit</Button>
-                        </div>
-                        <br />
-                        <div>
-                            <Button
-                                onClick={delData}
-                                variant='contained'
-                            >Delete</Button>
-                        </div>
-
                     </Grid>
                 </Grid>
             </Box>

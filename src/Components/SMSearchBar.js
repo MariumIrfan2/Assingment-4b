@@ -9,9 +9,6 @@ function SMSearchBar(props) {
         onSearch(selected, e)
     }
     return (
-
-
-
         <>
 
             <div>

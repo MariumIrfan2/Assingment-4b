@@ -60,6 +60,9 @@ function BackendCourseList() {
                 console.log(err);
             });
     };
+    let editData = (id) => {
+        navigate(`/courseform/${id}`)
+    }
 
 
     useEffect(() => {
@@ -96,7 +99,7 @@ function BackendCourseList() {
                     <SMIconButton
                         color="primary"
                         iconComponent={<EditIcon />}
-                    // onClick={() => view(e._id)}
+                        onClick={() => editData(e._id)}
                     />
 
                     <SMIconButton
@@ -108,15 +111,22 @@ function BackendCourseList() {
             ),
         },
     ]
-
+    let btnList = [
+        {
+            label: "Add",
+            onClick: () => {
+                navigate('/courseform')
+            }
+        },
+    ]
 
     return (
         <>
             <Box>
-                {/* <ScreenHeader
-                    title="Cars List"
+                <ScreenHeader
+                    title="Course List"
                     buttonsList={btnList}
-                /> */}
+                />
                 <div className="p-2 m-4">
 
                     <SMInput

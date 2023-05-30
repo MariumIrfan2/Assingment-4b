@@ -10,7 +10,7 @@ function ScreenHeader(props) {
 
     return (
         <>
-            <Box className="p-2 mb-4 bg-white shadow d-flex align-items-center">
+            <Box className="p-4 mb-4 bg-white shadow d-flex align-items-center justify-content-between">
                 <Box>
                     <SMButton
                         onClick={() => {
@@ -25,9 +25,9 @@ function ScreenHeader(props) {
                 <Box>
                     {buttonsList && Array.isArray(buttonsList) && buttonsList.length > 0
                         ? buttonsList.map((x, i) => (
-                            <Tooltip key={i} title={x.tooltip}>
-                                {x.displayField}
-                            </Tooltip>
+                            <SMButton key={i} label={x.label} variant="contained"
+                            endIcon={x.icon}
+                            onClick={x.onClick} />
                         ))
                         : null}
                 </Box>

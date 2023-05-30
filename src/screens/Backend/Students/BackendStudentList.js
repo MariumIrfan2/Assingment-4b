@@ -47,6 +47,10 @@ function BackendStudentList() {
         console.log(id)
         navigate(`/singlestudent/${id}`)
     }
+    let editData = (id) => {
+        console.log(id)
+        navigate(`/studentform/${id}`)
+    }
 
 
     let delData = (id) => {
@@ -61,10 +65,19 @@ function BackendStudentList() {
             });
     };
 
+    let btnList = [
+        {
+            label: "Add",
+            onClick: ()=>{
+                navigate('/studentform')
+            }
+    },
+]
 
     useEffect(() => {
         getdata();
     }, []);
+
 
     let cols = [
         {
@@ -100,7 +113,7 @@ function BackendStudentList() {
                     <SMIconButton
                         color="primary"
                         iconComponent={<EditIcon />}
-                    // onClick={() => view(e._id)}
+                    onClick={() => editData(e._id)}
                     />
 
                     <SMIconButton
@@ -117,11 +130,11 @@ function BackendStudentList() {
     return (
         <>
             <Box>
-                {/* <ScreenHeader
-                    title="Cars List"
+                <ScreenHeader
+                    title="Students List"
                     buttonsList={btnList}
-                /> */}
-                <div className="p-2 m-4">
+                />
+                {/* <div className="p-2 m-4">
 
                     <SMInput
                         type="text"
@@ -131,11 +144,11 @@ function BackendStudentList() {
                         className='p-2 m-4'
                         onChange={handleSearchQueryChange}
                     />
-                </div>
+                </div> */}
             </Box>
             <Box>
 
-                <SMGrid title="Students List" datasource={model} columns={cols} />
+                <SMGrid datasource={model} columns={cols} />
             </Box>
         </>
     )

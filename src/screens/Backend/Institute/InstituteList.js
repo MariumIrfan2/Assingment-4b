@@ -60,6 +60,10 @@ function BackendInstituteList() {
                 console.log(err);
             });
     };
+    let editData = (id) => {
+        console.log(id)
+        navigate(`/instituteform/${id}`)
+    }
 
 
     useEffect(() => {
@@ -96,7 +100,7 @@ function BackendInstituteList() {
                     <SMIconButton
                         color="primary"
                         iconComponent={<EditIcon />}
-                    // onClick={() => view(e._id)}
+                        onClick={() => editData(e._id)}
                     />
 
                     <SMIconButton
@@ -108,15 +112,22 @@ function BackendInstituteList() {
             ),
         },
     ]
-
+    let btnList = [
+        {
+            label: "Add",
+            onClick: () => {
+                navigate('/instituteform')
+            }
+        },
+    ]
 
     return (
         <>
             <Box>
-                {/* <ScreenHeader
-                    title="Cars List"
+                <ScreenHeader
+                    title="Institute List"
                     buttonsList={btnList}
-                /> */}
+                />
                 <div className="p-2 m-4">
 
                     <SMInput

@@ -25,7 +25,7 @@ function AppRouter() {
                 <Route path="products" element={<Products />} />
                 <Route path="Cart" element={<Cart />} /> */}
 
-                <Route path="/" element={<StudentForm />} />
+                <Route path="/studentform" element={<StudentForm />} />
                 <Route path="/teacherform" element={<TeacherForm />} />
                 <Route path="/instituteform" element={<InstitueFormBackend />} />
                 <Route path="/courseform" element={<CourseForm />} />
@@ -39,6 +39,8 @@ function AppRouter() {
                 <Route path="/singleteacher/:id" element={<SingleTeacher />} />
                 <Route path="/singleinstitute/:id" element={<SingleInstitute />} />
                 <Route path="/singlecourse/:id" element={<SingleCourse />} />
+                
+                <Route path="/studentform/:id" element={<StudentForm />} />
             </Routes>
         </BrowserRouter>
     )

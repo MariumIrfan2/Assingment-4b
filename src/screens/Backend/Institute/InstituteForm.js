@@ -1,6 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Delete, Get, Post, Put } from '../../../config/Axios/apibasemethods';
+import { Delete, Get, Post } from '../../../config/Axios/apibasemethods';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function InstitueFormBackend() {
 
@@ -8,8 +9,10 @@ export default function InstitueFormBackend() {
 
     const [model, setModel] = useState([]);
     const [isLoading, setisLoading] = useState([]);
+    const navigate = useNavigate()
 
-
+    let { id } = useParams();
+    // console.log(id)
 
     let getdata = () => {
         Get('/institutes').then((res) => {
@@ -22,7 +25,7 @@ export default function InstitueFormBackend() {
     };
 
     let postdata = () => {
-        Post('/institutes',
+        Post('/institutes', id,
             {
                 name: model.name,
                 shortName: model.name,
@@ -32,27 +35,14 @@ export default function InstitueFormBackend() {
             }).then((res) => {
                 console.log(res);
                 setModel({ ...res.data });
+                navigate('/backendinstitutelist')
             })
             .catch((err) => {
                 console.log(err);
             });
     };
 
-    let putdata = () => {
-        Put('/institutes', '64722aef822e57f6a604223a',
-            {
-                name: model.name,
-                shortName: model.name,
-                address: model.address,
-                tel: model.tel
-            }).then((res) => {
-                console.log(res.data);
-                setModel({ ...res.data });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+   
 
     let delData = () => {
         Delete('/institutes', '64722aef822e57f6a604223a').then((res) => {
@@ -112,22 +102,6 @@ export default function InstitueFormBackend() {
                                 variant='contained'
                             >Submit</Button>
                         </div>
-
-                        <br />
-                        <div>
-                            <Button
-                                onClick={putdata}
-                                variant='contained'
-                            >Edit</Button>
-                        </div>
-                        <br />
-                        <div>
-                            <Button
-                                onClick={delData}
-                                variant='contained'
-                            >Delete</Button>
-                        </div>
-
                     </Grid>
                 </Grid>
             </Box>
