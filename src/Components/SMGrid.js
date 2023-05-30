@@ -1,56 +1,65 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import { useEffect, useState } from "react";
-import SMSearchBar from "./SMSearchBar";
+import { Box } from "@mui/system";
+import { useState } from "react";
+// import SMSerchbar from "./SMSearchbar";
 
 function SMGrid(props) {
-  const { datasource, title, cols } = props;
+  const { title, columns, datasource, onRowClick, isLoading } = props;
 
-  
+  const [filteredList, setFilteredList] = useState([]);
 
- 
   return (
-    <>
-      <div>
-        <div>
-          <h2>{title}</h2>
-        </div>
-        <div>
-        {/* <SMSearchBar
-                        searchList={cols.filter((x) => x.searchable)}
-                        onSearch={(key, inputval) => {
-                            console.log(key,inputval);
+    <div>
+      <Box>
+        <h2>{title}</h2>
+        {/* <Box>
+          <SMSerchbar
+            searchList={columns.filter((x) => x.searchAble)}
+            onSearch={(key, val) => {
+              console.log(key, val);
 
-                            let arr = datasource.filter((x) => x[key].includes(inputval));
-                            console.log(arr);
-                            setFilteredData([...arr])
-                        }}
-                    /> */}
-       
-        </div>
-        {datasource && Array.isArray(datasource) && (
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                {cols && Array.isArray(cols) && cols.length > 0
-                  ? cols.map((x, i) => <th key={i}>{x.displayName}</th>)
-                  : null}
-              </tr>
-            </thead>
-            <tbody>
-              {datasource.map((x, i) => (
-                <tr key={i}>
-                  {cols.map((e, ind) => (
-                    <td key={ind}>
-                      {x[e.key]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-    </>
+              let dt = datasource.filter((x) => x[key].includes(val));
+              console.log(dt);
+            }}
+          />
+        </Box> */}
+      </Box>
+      {isLoading ? (
+        <img
+          width="40%"
+          src="https://hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif"
+          alt="Loading..."
+        />
+      ) : datasource && Array.isArray(datasource) && datasource.length < 1 ? (
+        <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/016/026/432/small/user-not-found-account-not-register-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg"
+          width="40%"
+          alt="No Data Found :("
+        />
+      ) : (
+        <table className="table table-stripped">
+          <thead>
+            <tr>
+              {columns && Array.isArray(columns) && columns.length > 0
+                ? columns.map((x, i) => <th key={i}>{x.displayName}</th>)
+                : null}
+            </tr>
+          </thead>
+          <tbody>
+            {datasource && Array.isArray(datasource) && datasource.length > 0
+              ? datasource.map((x, i) => (
+                  <tr key={i}>
+                    {columns.map((e, ind) => (
+                      <td key={ind}>
+                        {e.displayField ? e.displayField(x) : x[e.key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              : null}
+          </tbody>
+        </table>
+      )}
+    </div>
   );
 }
 export default SMGrid;

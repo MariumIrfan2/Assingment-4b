@@ -2,8 +2,8 @@ import { Label } from "@mui/icons-material";
 import { TextField } from "@mui/material";
 
 
-function SMInput() {
-    const { label, variant, disabled, onChange, color, fullWidth, placeholder, required } = props;
+export default function SMInput(props) {
+    const { label, type, variant, disabled, onChange, color, fullWidth, placeholder, required } = props;
     return (
         <>
             <TextField

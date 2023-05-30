@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../config/Redux/Reducer/CartSlice";
 import { Link } from "react-router-dom";
 
@@ -7,6 +7,12 @@ export default function Products() {
     const [listData, setListData] = useState([]);
     const [loader, setLoader] = useState(false);
     const dispatch = useDispatch();
+
+    const loginfromredux = useSelector((a) => (a.Login))
+    console.log(loginfromredux)
+    const signupfromredux = useSelector((a) => (a.SignUp))
+    console.log(signupfromredux)
+
     let getData = () => {
         setLoader(true);
         fetch("https://fakestoreapi.com/products")
@@ -28,8 +34,9 @@ export default function Products() {
     }, []);
     return (
         <>
+            <h1>Welcome {signupfromredux.name}</h1>
             <h1>Products</h1>
-            <Link className="fs-2 text-success p-2 m-2" to="/cart">GoToCart</Link>
+            <Link className="fs-2 text-success p-2 m-24" to="/cart">GoToCart</Link>
             <div className="row">
                 {loader ? (
                     <h2>Loading</h2>

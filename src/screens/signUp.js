@@ -10,19 +10,23 @@ import { add } from "../config/Redux/Reducer/SignUpSlice";
 function SignUp() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
+    const [model, setModel] = useState({});
+    let userName = model.userName
+    let userEmail = model.email
+    let UserPassword = model.password
 
     const reduxSignup = () => {
         dispatch(
             add({
-                name: "ABC",
-                email: "adb@gmail.com",
-                password: "123456",
+                name: userName,
+                email: userEmail,
+                password: UserPassword,
             })
         )
         navigate('/products')
     }
 
-    const [model, setModel] = useState({});
+
     let CategoryType = ["Admin", "Student", "Teacher", "Institute"];
 
     let createUser = () => {
@@ -62,7 +66,7 @@ function SignUp() {
                     />
                 </Grid>
                 <Grid item md={6} className='p-2 m-3'>
-
+                    
                     <TextField type='password' required
                         label="Password"
                         variant="outlined"
@@ -77,14 +81,14 @@ function SignUp() {
                             variant="filled"
                             onClick={() => { navigate("/login") }}>Already have an account? Login instead </Button>
                     </div>
-                    <div>
+                    {/* <div>s
                         <br />
                         <Button
                             onClick={createUser}
                             variant='contained'
                         >SignUp</Button>
-                    </div>
-                    <button onClick={reduxSignup}>
+                    </div> */}
+                    <button className="btn btn-info" onClick={reduxSignup}>
                         Signup
                     </button>
                 </Grid>

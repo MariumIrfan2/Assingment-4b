@@ -2,10 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import React from 'react';
 
 
-
 const loginSlice = createSlice({
     name: "Login",
-    initialState: { dummyData: "ABC", },
+    initialState: { },
     reducers: {
         add(state, action) {
             state.email = action.payload.email;
@@ -19,3 +18,5 @@ const loginSlice = createSlice({
 
 export const { add, del } = loginSlice.actions;
 export default loginSlice.reducer
+
+

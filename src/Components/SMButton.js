@@ -1,6 +1,6 @@
 import { Button } from "@mui/material"
 
-function SMButton() {
+function SMButton(props) {
     const { label, disabled, fullWidth, endIcon, startIcon, onClick, variant } = props
 
     return ( 
