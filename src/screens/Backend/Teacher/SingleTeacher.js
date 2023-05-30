@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { GetById } from '../../../config/Axios/apibasemethods';
+import { Get } from '../../../config/Axios/apibasemethods';
 
 function SingleTeacher() {
 
@@ -9,8 +9,8 @@ function SingleTeacher() {
     let { id } = useParams();
     console.log(id)
 
-    let getByID = () => {
-        GetById("/teachers", id).then((res) => {
+    let get = () => {
+        Get("/teachers", id).then((res) => {
             console.log(res.data.data)
             setModel(res.data.data)
         }).catch((err) => {
@@ -20,11 +20,11 @@ function SingleTeacher() {
 
 
     useEffect(() => {
-        getByID()
+        get()
     }, [])
 
     return (
-        <div>
+        <div className='text-center fs-3 m-auto'>
             <div>Name:{model.name}</div>
             <div>Last Name:{model.course}</div>
             <div>Contact: {model.contact}</div>

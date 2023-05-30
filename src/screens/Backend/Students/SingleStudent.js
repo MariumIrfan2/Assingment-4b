@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { GetById } from '../../../config/Axios/apibasemethods';
+import { Get } from '../../../config/Axios/apibasemethods';
 
-function SingleStudent() {
+export default function SingleStudent() {
 
     const [model, setModel] = useState({})
 
@@ -10,7 +10,7 @@ function SingleStudent() {
     console.log(id)
 
     let getByID = () => {
-        GetById("/students", id).then((res) => {
+        Get("/students", id).then((res) => {
             console.log(res.data.data)
             setModel(res.data.data)
         }).catch((err) => {
@@ -24,14 +24,14 @@ function SingleStudent() {
     }, [])
 
     return (
-        <div>
-            <div>First Name:{model.firstName}</div>
-            <div>Last Name:{model.lastName}</div>
-            <div>Email: {model.email}</div>
-            <div>Password: {model.password}</div>
-            <div>Contact: {model.contact}</div>
+        <div className='text-center fs-3 m-auto'>
+            <div>{model.firstName}</div>
+            <div>{model.lastName}</div>
+            <div> {model.email}</div>
+            <div> {model.password}</div>
+            <div> {model.contact}</div>
         </div>
     )
 }
 
-export default SingleStudent
+

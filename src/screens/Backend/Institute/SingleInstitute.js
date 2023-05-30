@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { GetById } from '../../../config/Axios/apibasemethods';
+import { Get } from '../../../config/Axios/apibasemethods';
 
 export default function SingleInstitute() {
 
@@ -9,8 +9,8 @@ export default function SingleInstitute() {
     let { id } = useParams();
     console.log(id)
 
-    let getByID = () => {
-        GetById("/institutes", id).then((res) => {
+    let get = () => {
+        Get("/institutes", id).then((res) => {
             console.log(res.data.data)
             setModel(res.data.data)
         }).catch((err) => {
@@ -20,11 +20,11 @@ export default function SingleInstitute() {
 
 
     useEffect(() => {
-        getByID()
+        get()
     }, [])
 
     return (
-        <div>
+        <div className='text-center fs-3 m-auto'>
             <div>{model.name}</div>
             <div>{model.shortName}</div>
             <div>{model.address}</div>
