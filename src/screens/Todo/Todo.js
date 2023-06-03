@@ -17,7 +17,7 @@ function Todo() {
     const [model, setModel] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredStudents, setFilteredStudents] = useState('');
-    const [currentPage, setCurrentPage] = useState(3)
+    const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(6)
 
 
@@ -56,7 +56,6 @@ function Todo() {
             setCurrentPage(currentPage - 1);
             getdata()
         }
-
     };
 
     const nextPage = () => {
