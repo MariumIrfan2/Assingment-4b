@@ -15,7 +15,7 @@ import Todo from "../../screens/Todo/Todo";
 
 
 
-function AppRouter() {
+function Router() {
     return (
         <BrowserRouter>
 
@@ -26,11 +26,11 @@ function AppRouter() {
                 <Route path="products" element={<Products />} />
                 <Route path="Cart" element={<Cart />} /> */}
 
+                <Route path="/" element={<Todo />} />
                 <Route path="/studentform" element={<StudentForm />} />
                 <Route path="/teacherform" element={<TeacherForm />} />
                 <Route path="/instituteform" element={<InstitueFormBackend />} />
                 <Route path="/courseform" element={<CourseForm />} />
-                <Route path="/todo" element={<Todo />} />
 
                 <Route path="/backendstudentlist" element={<BackendStudentList />} />
                 <Route path="/backendteacherlist" element={<BackendTeachersList />} />
@@ -48,4 +48,4 @@ function AppRouter() {
     )
 }
 
-export default AppRouter;
+export default Router;

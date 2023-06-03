@@ -5,7 +5,7 @@ export default function Pagination({ count, currentPage }) {
     return (
         <div>
             <Stack spacing={2}>
-                <Pagination count={count} page={currentPage} color="primary" />
+                <Pagination count={count} color="primary" />
             </Stack>
         </div>
     )

@@ -3,13 +3,13 @@ import { Delete, Get } from '../../config/Axios/apibasemethods';
 import SMGrid from '../../Components/SMGrid';
 import SMInput from '../../Components/SMInput';
 import SMIconButton from "../../Components/SMIconButton.js";
-import { Box, Button } from '@mui/material';
+import { Box, Button, Pagination } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ScreenHeader from "../../Components/ScreenHeader.js";
 import { useNavigate } from 'react-router-dom';
-import Pagination from '../../Components/Pagination';
+
 
 
 function Todo() {
@@ -17,28 +17,28 @@ function Todo() {
     const [model, setModel] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredStudents, setFilteredStudents] = useState('');
-    const [currentPage, setCurrentPage] = useState()
-    const [totalPages, setTotalPages] = useState()
+    const [currentPage, setCurrentPage] = useState(3)
+    const [totalPages, setTotalPages] = useState(6)
 
 
     const navigate = useNavigate()
 
 
-    const handleSearchQueryChange = (event) => {
-        setSearchQuery(event.target.value);
-        filteredStudents(event.target.value);
-    };
+    // const handleSearchQueryChange = (event) => {
+    //     setSearchQuery(event.target.value);
+    //     filteredStudents(event.target.value);
+    // };
 
-    const filterList = (query) => {
-        const filteredStudents = model.filter((student) => {
-            student.firstName.toLowerCase().includes(query.toLowerCase())
-        })
+    // const filterList = (query) => {
+    //     const filteredStudents = model.filter((student) => {
+    //         student.firstName.toLowerCase().includes(query.toLowerCase())
+    //     })
 
-        setFilteredStudents(filteredStudents)
-    }
+    //     setFilteredStudents(filteredStudents)
+    // }
 
     let getdata = () => {
-        Get(`/todos?p=${2}`).then((res) => {
+        Get(`/todos?p=${currentPage}`).then((res) => {
             console.log(res.data.data);
             setModel([...res.data.data]);
 
@@ -50,6 +50,20 @@ function Todo() {
             .catch((err) => {
                 console.log(err);
             });
+    };
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            getdata()
+        }
+
+    };
+
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            getdata()
+        }
     };
 
     // let view = (id) => {
@@ -74,14 +88,20 @@ function Todo() {
     //         });
     // };
 
-    // let btnList = [
-    //     {
-    //         label: "Add",
-    //         onClick: () => {
-    //             navigate('/studentform')
-    //         }
-    //     },
-    // ]
+    let btnList = [
+        {
+            label: "Prev",
+            onClick: () => {
+                prevPage()
+            }
+        },
+        {
+            label: "Next",
+            onClick: () => {
+                nextPage()
+            }
+        },
+    ]
 
     useEffect(() => {
         getdata();
@@ -124,8 +144,8 @@ function Todo() {
         <>
             <Box>
                 <ScreenHeader
-                    title="Students List"
-                // buttonsList={btnList}
+                    title="Todo List"
+                    buttonsList={btnList}
                 />
                 {/* <div className="p-2 m-4">
 
@@ -142,10 +162,16 @@ function Todo() {
             <Box>
 
                 <SMGrid datasource={model} columns={cols} />
+
+
+
             </Box>
             <Box>
-                <Pagination currentPage={currentPage} count={6} />
+
+                <Pagination count={totalPages} page={currentPage} />
             </Box>
+
+
         </>
     )
 }
