@@ -11,6 +11,7 @@ import SingleStudent from "../../screens/Backend/Students/SingleStudent";
 import SingleTeacher from "../../screens/Backend/Teacher/SingleTeacher";
 import SingleCourse from "../../screens/Backend/Course/SingleCourse";
 import SingleInstitute from "../../screens/Backend/Institute/SingleInstitute";
+import Todo from "../../screens/Todo/Todo";
 
 
 
@@ -29,6 +30,7 @@ function AppRouter() {
                 <Route path="/teacherform" element={<TeacherForm />} />
                 <Route path="/instituteform" element={<InstitueFormBackend />} />
                 <Route path="/courseform" element={<CourseForm />} />
+                <Route path="/todo" element={<Todo />} />
 
                 <Route path="/backendstudentlist" element={<BackendStudentList />} />
                 <Route path="/backendteacherlist" element={<BackendTeachersList />} />
@@ -39,7 +41,7 @@ function AppRouter() {
                 <Route path="/singleteacher/:id" element={<SingleTeacher />} />
                 <Route path="/singleinstitute/:id" element={<SingleInstitute />} />
                 <Route path="/singlecourse/:id" element={<SingleCourse />} />
-                
+
                 <Route path="/studentform/:id" element={<StudentForm />} />
             </Routes>
         </BrowserRouter>

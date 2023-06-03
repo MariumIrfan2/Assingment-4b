@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { Delete, Get } from '../../../config/Axios/apibasemethods';
-import SMGrid from '../../../Components/SMGrid';
-import SMInput from '../../../Components/SMInput';
-import SMIconButton from "../../../Components/SMIconButton.js";
+import { Delete, Get } from '../../config/Axios/apibasemethods';
+import SMGrid from '../../Components/SMGrid';
+import SMInput from '../../Components/SMInput';
+import SMIconButton from "../../Components/SMIconButton.js";
 import { Box, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import ScreenHeader from "../../../Components/ScreenHeader.js";
+import ScreenHeader from "../../Components/ScreenHeader.js";
 import { useNavigate } from 'react-router-dom';
+import Pagination from '../../Components/Pagination';
 
 
-function BackendStudentList() {
+function Todo() {
 
     const [model, setModel] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredStudents, setFilteredStudents] = useState('');
+    const [currentPage, setCurrentPage] = useState()
+    const [totalPages, setTotalPages] = useState()
+
 
     const navigate = useNavigate()
 
@@ -34,45 +38,50 @@ function BackendStudentList() {
     }
 
     let getdata = () => {
-        Get('/students').then((res) => {
+        Get(`/todos?p=${2}`).then((res) => {
             console.log(res.data.data);
             setModel([...res.data.data]);
+
+            // const { totalPages } = res.data.data.totalPages;
+
+
+            // setTotalPages(totalPages);
         })
             .catch((err) => {
                 console.log(err);
             });
     };
 
-    let view = (id) => {
-        console.log(id)
-        navigate(`/singlestudent/${id}`)
-    }
-    let editData = (id) => {
-        console.log(id)
-        navigate(`/studentform/${id}`)
-    }
+    // let view = (id) => {
+    //     console.log(id)
+    //     navigate(`/singlestudent/${id}`)
+    // }
+    // let editData = (id) => {
+    //     console.log(id)
+    //     navigate(`/studentform/${id}`)
+    // }
 
 
-    let delData = (id) => {
-        console.log(id)
-        Delete('/students', id).then((res) => {
-            console.log(res.data);
-            console.log('Student Deleted');
-            getdata()
-        })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+    // let delData = (id) => {
+    //     console.log(id)
+    //     Delete('/students', id).then((res) => {
+    //         console.log(res.data);
+    //         console.log('Student Deleted');
+    //         getdata()
+    //     })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // };
 
-    let btnList = [
-        {
-            label: "Add",
-            onClick: () => {
-                navigate('/studentform')
-            }
-        },
-    ]
+    // let btnList = [
+    //     {
+    //         label: "Add",
+    //         onClick: () => {
+    //             navigate('/studentform')
+    //         }
+    //     },
+    // ]
 
     useEffect(() => {
         getdata();
@@ -81,24 +90,8 @@ function BackendStudentList() {
 
     let cols = [
         {
-            displayName: "First Name",
-            key: "firstName",
-        },
-        {
-            displayName: "Last Name",
-            key: "lastName",
-        },
-        {
-            displayName: "Email",
-            key: "email",
-        },
-        {
-            displayName: "Password",
-            key: "password",
-        },
-        {
-            displayName: "Contact",
-            key: "contact",
+            displayName: "Todo",
+            key: "text",
         },
         {
             displayName: "Action",
@@ -108,18 +101,18 @@ function BackendStudentList() {
                     <SMIconButton
                         color="primary"
                         iconComponent={<VisibilityIcon />}
-                        onClick={() => view(e._id)}
+                    // onClick={() => view(e._id)}
                     />
                     <SMIconButton
                         color="primary"
                         iconComponent={<EditIcon />}
-                        onClick={() => editData(e._id)}
+                    // onClick={() => editData(e._id)}
                     />
 
                     <SMIconButton
                         color="error"
                         iconComponent={<DeleteIcon />}
-                        onClick={() => delData(e._id)}
+                    // onClick={() => delData(e._id)}
                     />
                 </>
             ),
@@ -132,7 +125,7 @@ function BackendStudentList() {
             <Box>
                 <ScreenHeader
                     title="Students List"
-                    buttonsList={btnList}
+                // buttonsList={btnList}
                 />
                 {/* <div className="p-2 m-4">
 
@@ -150,8 +143,12 @@ function BackendStudentList() {
 
                 <SMGrid datasource={model} columns={cols} />
             </Box>
+            <Box>
+                <Pagination currentPage={currentPage} count={6} />
+            </Box>
         </>
     )
 }
 
-export default BackendStudentList
+export default Todo;
+
