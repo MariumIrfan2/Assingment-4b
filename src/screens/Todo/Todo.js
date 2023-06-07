@@ -23,7 +23,6 @@ function Todo() {
 
     const navigate = useNavigate()
 
-
     // const handleSearchQueryChange = (event) => {
     //     setSearchQuery(event.target.value);
     //     filteredStudents(event.target.value);
@@ -32,7 +31,7 @@ function Todo() {
     // const filterList = (query) => {
     //     const filteredStudents = model.filter((student) => {
     //         student.firstName.toLowerCase().includes(query.toLowerCase())
-    //     })
+    //   })
 
     //     setFilteredStudents(filteredStudents)
     // }
@@ -43,9 +42,8 @@ function Todo() {
             setModel([...res.data.data]);
 
             // const { totalPages } = res.data.data.totalPages;
-
-
             // setTotalPages(totalPages);
+            
         })
             .catch((err) => {
                 console.log(err);
